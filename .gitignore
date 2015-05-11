@@ -8,6 +8,8 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
+# ignore ide settings
+.idea
 
 ## Specific to RubyMotion:
 .dat*
