@@ -11,6 +11,9 @@
 # ignore ide settings
 .idea
 
+# ignore rspec settins
+spec
+
 ## Specific to RubyMotion:
 .dat*
 .repl_history
