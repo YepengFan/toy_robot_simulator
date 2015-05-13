@@ -1,18 +1,18 @@
 class Robot
-
   def initialize(table)
     @place = false
     @table = table
-    @directions = ['NORTH', 'EAST', 'SOUTH', 'WEST']
+    @directions = [:NORTH, :EAST, :SOUTH, :WEST]
   end
 
   def place(x, y, direction)
-    check_position(x,y)
+    raise "Direction should only be NORTH, EAST, SOUTH or WEST" unless @directions.include? direction
+    raise "Position is not on the table" unless @table.valid_position?(x, y)
 
-    @x = x
-    @y = y
     @place = true
-    @facing = direction
+    @directions.rotate! until @directions.first == direction
+    @facing = @directions.first
+    @position = [x, y]
   end
 
   def move
@@ -32,12 +32,11 @@ class Robot
   end
 
   private
-  def check_position(x, y)
-
-  end
-
   def position
 
   end
 
+  def turn(direction)
+
+  end
 end
