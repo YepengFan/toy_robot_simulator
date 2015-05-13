@@ -5,6 +5,16 @@ describe Robot do
     table = double
     allow(table).to receive(:valid_position?).with(4, 4).and_return(true)
     allow(table).to receive(:valid_position?).with(6, 6).and_return(false)
+    allow(table).to receive(:valid_position?).with(5, 5).and_return(true)
+    allow(table).to receive(:valid_position?).with(5, 6).and_return(false)
+    allow(table).to receive(:valid_position?).with(6, 5).and_return(false)
+    allow(table).to receive(:valid_position?).with(0, 0).and_return(true)
+    allow(table).to receive(:valid_position?).with(0, -1).and_return(false)
+    allow(table).to receive(:valid_position?).with(-1, 0).and_return(false)
+    allow(table).to receive(:valid_position?).with(4, 5).and_return(true)
+    allow(table).to receive(:valid_position?).with(5, 4).and_return(true)
+    allow(table).to receive(:valid_position?).with(4, 3).and_return(true)
+    allow(table).to receive(:valid_position?).with(3, 4).and_return(true)
     Robot.new(table)
   end
 
@@ -14,7 +24,6 @@ describe Robot do
     end
 
     it 'should have directions' do
-      # expect(robot.instance_variable_get(:@directions)).to eq(['NORTH', 'EAST', 'SOUTH', 'WEST'])
       expect(robot.instance_variable_get(:@directions)).to eq([:NORTH, :EAST, :SOUTH, :WEST])
     end
   end
@@ -36,4 +45,69 @@ describe Robot do
       expect(robot.instance_variable_get(:@place)).to eq(false)
     end
   end
+
+  context 'when it moves' do
+    context 'raise exception if moves out of the table' do
+      it 'towards NORTH' do
+        robot.place(5, 5, :NORTH)
+        expect { robot.move }.to raise_error(RuntimeError, "Position is not on the table")
+      end
+
+      it 'towards SOUTH' do
+        robot.place(0, 0, :SOUTH)
+        expect { robot.move }.to raise_error(RuntimeError, "Position is not on the table")
+      end
+
+      it 'towards EAST' do
+        robot.place(5, 5, :EAST)
+        expect { robot.move }.to raise_error(RuntimeError, "Position is not on the table")
+      end
+
+      it 'towards WEST' do
+        robot.place(0, 0, :WEST)
+        expect { robot.move }.to raise_error(RuntimeError, "Position is not on the table")
+      end
+    end
+
+    context 'on the table' do
+      it 'towards NORTH' do
+        robot.place(4, 4, :NORTH)
+        robot.move
+        expect(robot.instance_variable_get(:@position)).to eq([4, 5])
+      end
+
+      it 'towards SOUTH' do
+        robot.place(4, 4, :SOUTH)
+        robot.move
+        expect(robot.instance_variable_get(:@position)).to eq([4, 3])
+      end
+
+      it 'towards EAST' do
+        robot.place(4, 4, :EAST)
+        robot.move
+        expect(robot.instance_variable_get(:@position)).to eq([5, 4])
+      end
+
+      it 'towards WEST' do
+        robot.place(4, 4, :WEST)
+        robot.move
+        expect(robot.instance_variable_get(:@position)).to eq([3, 4])
+      end
+    end
+  end
+
+  context 'when robot turns' do
+    it 'left' do
+      robot.place(4, 4, :NORTH)
+      robot.left
+      expect(robot.instance_variable_get(:@facing)).to eq(:WEST)
+    end
+
+    it 'right' do
+      robot.place(4, 4, :NORTH)
+      robot.right
+      expect(robot.instance_variable_get(:@facing)).to eq(:EAST)
+    end
+  end
+
 end
