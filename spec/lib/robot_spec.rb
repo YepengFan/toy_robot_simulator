@@ -48,25 +48,20 @@ describe Robot do
 
   context 'when it is not placed' do
     it 'raise exception if it tries to move' do
-      pending
-
+      expect { robot.move }.to raise_error(RuntimeError, "Robot has not been placed")
     end
 
     it 'raise exception if it tries to turn left' do
-      pending
-
+      expect { robot.left }.to raise_error(RuntimeError, "Robot has not been placed")
     end
 
     it 'raise exception if it tries to turn right' do
-      pending
-
+      expect { robot.right }.to raise_error(RuntimeError, "Robot has not been placed")
     end
 
     it 'raise exception if it tries to report' do
-      pending
-
+      expect { robot.report }.to raise_error(RuntimeError, "Robot has not been placed")
     end
-
   end
 
   context 'when it moves' do
@@ -119,14 +114,14 @@ describe Robot do
     end
   end
 
-  context 'when robot turns' do
-    it 'left' do
+  context 'when robot change direction' do
+    it 'turns left will change facing direction' do
       robot.place(4, 4, :NORTH)
       robot.left
       expect(robot.instance_variable_get(:@facing)).to eq(:WEST)
     end
 
-    it 'right' do
+    it 'turns right will change facing direction' do
       robot.place(4, 4, :NORTH)
       robot.right
       expect(robot.instance_variable_get(:@facing)).to eq(:EAST)
@@ -139,5 +134,4 @@ describe Robot do
       expect(robot.report) .to eq('4, 4, NORTH')
     end
   end
-
 end
