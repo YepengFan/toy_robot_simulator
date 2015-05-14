@@ -20,7 +20,7 @@ describe Robot do
 
   context 'when it is initialized' do
     it 'should not be placed' do
-      expect(robot.instance_variable_get(:@place)).to eq(false)
+      expect(robot.instance_variable_get(:@placed)).to eq(false)
     end
 
     it 'should have directions' do
@@ -35,15 +35,38 @@ describe Robot do
 
     it 'initilize variables if robot is on the table' do
       robot.place(4, 4, :NORTH)
-      expect(robot.instance_variable_get(:@place)).to eq(true)
+      expect(robot.instance_variable_get(:@placed)).to eq(true)
       expect(robot.instance_variable_get(:@facing)).to eq(:NORTH)
       expect(robot.instance_variable_get(:@position)).to eq([4, 4])
     end
 
     it 'raise exception if place robot is out of table' do
       expect { robot.place(6, 6, :NORTH) }.to raise_error(RuntimeError, "Position is not on the table")
-      expect(robot.instance_variable_get(:@place)).to eq(false)
+      expect(robot.instance_variable_get(:@placed)).to eq(false)
     end
+  end
+
+  context 'when it is not placed' do
+    it 'raise exception if it tries to move' do
+      pending
+
+    end
+
+    it 'raise exception if it tries to turn left' do
+      pending
+
+    end
+
+    it 'raise exception if it tries to turn right' do
+      pending
+
+    end
+
+    it 'raise exception if it tries to report' do
+      pending
+
+    end
+
   end
 
   context 'when it moves' do
@@ -107,6 +130,13 @@ describe Robot do
       robot.place(4, 4, :NORTH)
       robot.right
       expect(robot.instance_variable_get(:@facing)).to eq(:EAST)
+    end
+  end
+
+  context 'when robot report' do
+    it 'should report its position and direction' do
+      robot.place(4, 4, :NORTH)
+      expect(robot.report) .to eq('4, 4, NORTH')
     end
   end
 
