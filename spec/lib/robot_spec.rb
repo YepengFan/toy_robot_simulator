@@ -30,7 +30,7 @@ describe Robot do
 
   context 'when it is placed' do
     it 'raise exception if direction is unreal' do
-      expect { robot.place(4, 4, "UNREAL DIRECTION")}.to raise_error(RuntimeError, "Direction should only be NORTH, EAST, SOUTH or WEST")
+      expect { robot.place(4, 4, "UNREAL DIRECTION") }.to raise_error(RuntimeError, "Direction should only be NORTH, EAST, SOUTH or WEST")
     end
 
     it 'initilize variables if robot is on the table' do
@@ -131,7 +131,7 @@ describe Robot do
   context 'when robot report' do
     it 'should report its position and direction' do
       robot.place(4, 4, :NORTH)
-      expect(robot.report) .to eq('4, 4, NORTH')
+      expect(robot.report).to eq('4, 4, NORTH')
     end
   end
 end

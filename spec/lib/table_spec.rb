@@ -1,7 +1,7 @@
 require 'table'
 
 describe Table do
-  let(:table) { Table.new(5,5) }
+  let(:table) { Table.new(5, 5) }
   subject { table }
 
   it 'should have a valid minimum value of x' do
@@ -21,6 +21,6 @@ describe Table do
   end
 
   it 'should not validate a position out of range' do
-    expect(table.valid_position?(6,6)).to eq(false)
+    expect(table.valid_position?(6, 6)).to eq(false)
   end
 end

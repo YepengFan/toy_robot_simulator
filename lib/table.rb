@@ -7,6 +7,6 @@ class Table
   end
 
   def valid_position?(x, y)
-    x.between?(@min_x,@max_x) and y.between?(@min_y, @max_y)
+    x.between?(@min_x, @max_x) and y.between?(@min_y, @max_y)
   end
 end

@@ -7,7 +7,7 @@ class Robot
 
   def place(x, y, direction)
     valid_direction? direction
-    valid_position? x,y
+    valid_position? x, y
 
     @placed = true
     @directions.rotate! until @directions.first == direction
@@ -19,10 +19,14 @@ class Robot
     valid_placed?
 
     case @facing
-      when :NORTH then @position[1] += 1 if valid_position?(@position[0], @position[1] + 1)
-      when :SOUTH then @position[1] -= 1 if valid_position?(@position[0], @position[1] - 1)
-      when :EAST then @position[0] += 1 if valid_position?(@position[0] + 1, @position[1])
-      when :WEST then @position[0] -= 1 if valid_position?(@position[0] - 1, @position[1])
+      when :NORTH then
+        @position[1] += 1 if valid_position?(@position[0], @position[1] + 1)
+      when :SOUTH then
+        @position[1] -= 1 if valid_position?(@position[0], @position[1] - 1)
+      when :EAST then
+        @position[0] += 1 if valid_position?(@position[0] + 1, @position[1])
+      when :WEST then
+        @position[0] -= 1 if valid_position?(@position[0] - 1, @position[1])
     end
   end
 
