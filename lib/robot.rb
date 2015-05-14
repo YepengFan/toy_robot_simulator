@@ -1,4 +1,7 @@
 class Robot
+
+  attr_reader :placed
+
   def initialize(table)
     @placed = false
     @table = table
