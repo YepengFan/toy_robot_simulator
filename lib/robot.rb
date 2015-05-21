@@ -65,7 +65,7 @@ class Robot
   end
 
   def valid_position?(x, y)
-    raise "Position is not on the table" unless @table.valid_position?(x, y)
+    puts "Position is not on the table" unless @table.valid_position?(x, y)
     @table.valid_position?(x, y)
   end
 end
