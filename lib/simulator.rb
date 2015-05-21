@@ -15,11 +15,11 @@ class Simulator
       when "PLACE" then
         valid_place_command_length?(tokens)
         valid_position_value?(tokens[1], tokens[2])
-        @x = tokens[1].to_i
-        @y = tokens[2].to_i
-        @facing = tokens[3].upcase.to_sym
+        x = tokens[1].to_i
+        y = tokens[2].to_i
+        facing = tokens[3].upcase.to_sym
 
-        @robot.place(@x, @y, @facing)
+        @robot.place(x, y, facing)
       when "MOVE" then
         @robot.move if robot_placed?
       when "LEFT" then
@@ -27,7 +27,7 @@ class Simulator
       when "RIGHT" then
         @robot.right if robot_placed?
       when "REPORT" then
-        @robot.report if robot_placed?
+        puts @robot.report if robot_placed?
     end
   end
 
