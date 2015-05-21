@@ -35,3 +35,6 @@
 
 ## Usage
 The main file in the folder 'lib' is the entrance of program. Command 'ruby main.rb' can start the toy robot simulator.
+
+## Screenshot
+![screenshot](https://github.com/YepengFan/toy_robot_simulator/blob/master/Screen%20Shot.png)
