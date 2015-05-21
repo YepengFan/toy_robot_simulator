@@ -68,22 +68,22 @@ describe Robot do
     context 'raise exception if moves out of the table' do
       it 'towards NORTH' do
         robot.place(5, 5, :NORTH)
-        expect { robot.move }.to raise_error(RuntimeError, "Position is not on the table")
+        expect { robot.move }.to output("Position is not on the table\n").to_stdout
       end
 
       it 'towards SOUTH' do
         robot.place(0, 0, :SOUTH)
-        expect { robot.move }.to raise_error(RuntimeError, "Position is not on the table")
+        expect { robot.move }.to output("Position is not on the table\n").to_stdout
       end
 
       it 'towards EAST' do
         robot.place(5, 5, :EAST)
-        expect { robot.move }.to raise_error(RuntimeError, "Position is not on the table")
+        expect { robot.move }.to output("Position is not on the table\n").to_stdout
       end
 
       it 'towards WEST' do
         robot.place(0, 0, :WEST)
-        expect { robot.move }.to raise_error(RuntimeError, "Position is not on the table")
+        expect { robot.move }.to output("Position is not on the table\n").to_stdout
       end
     end
 
